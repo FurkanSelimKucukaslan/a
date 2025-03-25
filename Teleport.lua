@@ -3,6 +3,13 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiC
 wait(2)
 local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
+local UIS = game:GetService('UserInputService')
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+
 screenui.Parent = plr.PlayerGui
 screenui.Name = math.random(100000, 999999)
 
@@ -11,6 +18,13 @@ frame.Parent = screenui
 frame.Size = UDim2.new(0.255, 0,0.336, 0)
 frame.Position = UDim2.new(0.73, 0,0.332, 0)
 frame.BackgroundColor3 = Color3.new(0,0,0)
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
 
 local uicorner = Instance.new("UICorner")
 uicorner.Parent = frame
@@ -38,7 +52,7 @@ bobButton.TextScaled = true
 bobButton.Text = "Teleport"
 bobButton.BackgroundColor3 = Color3.new(0, 0, 0)
 bobButton.TextColor3 = Color3.fromRGB(0, 85, 0)
-bobButton.Position = UDim2.new(0.318, 0,0.77, 0)
+bobButton.Position = UDim2.new(0.064, 0,0.765, 0)
 
 local uicorner2 = Instance.new("UICorner")
 uicorner2.Parent = bobButton
@@ -64,18 +78,90 @@ local uicorner3 = Instance.new("UICorner")
 uicorner3.Parent = bobButton2
 uicorner3.CornerRadius = UDim.new(0, 25)
 
-local uistroke2 = Instance.new("UIStroke")
-uistroke2.Parent = bobButton2
-uistroke2.Color = Color3.fromRGB(0, 85, 0)
-uistroke2.Thickness = 2
-uistroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local uistroke3 = Instance.new("UIStroke")
+uistroke3.Parent = bobButton2
+uistroke3.Color = Color3.fromRGB(0, 85, 0)
+uistroke3.Thickness = 2
+uistroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+local bobButton3 = Instance.new("TextButton")
+bobButton3.Parent = frame
+bobButton3.Size = UDim2.new(0.363, 0,0.131, 0)
+bobButton3.TextScaled = true
+bobButton3.Text = "Loop Teleport: FALSE"
+bobButton3.BackgroundColor3 = Color3.new(0, 0, 0)
+bobButton3.TextColor3 = Color3.fromRGB(85, 0, 0)
+bobButton3.Position = UDim2.new(0.572, 0,0.765, 0)
+
+local uicorner4 = Instance.new("UICorner")
+uicorner4.Parent = bobButton3
+uicorner4.CornerRadius = UDim.new(0, 25)
+
+local uistroke4 = Instance.new("UIStroke")
+uistroke4.Parent = bobButton3
+uistroke4.Color = Color3.fromRGB(85, 0, 0)
+uistroke4.Thickness = 2
+uistroke4.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+local loop = Instance.new("BoolValue")
+loop.Parent = screenui
+loop.Value = false
+loop.Name = "LoopTeleport"
 
 bobButton.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild(bobButton2.Text) then
-		if workspace[bobButton2.Text]:FindFirstChild("HumanoidRootPart") then
-			plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].HumanoidRootPart.CFrame)
+		if loop.Value == false then
+			if workspace[bobButton2.Text]:FindFirstChild("HumanoidRootPart") then
+				plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].HumanoidRootPart.CFrame)
+			else
+				plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].CFrame)
+			end
 		else
-			plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].CFrame)
+			repeat
+				if workspace[bobButton2.Text]:FindFirstChild("HumanoidRootPart") then
+					plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].HumanoidRootPart.CFrame)
+				else
+					plr.Character.HumanoidRootPart:PivotTo(workspace[bobButton2.Text].CFrame)
+				end
+				task.wait(0.025)
+			until loop.Value == false
+			if not (loop.Value == true) then
+				return
+			end
+		end
+	end
+end)
+
+bobButton3.MouseButton1Click:Connect(function()
+	loop.Value = not loop.Value
+	if loop.Value == true then
+		uistroke4.Color = Color3.fromRGB(0, 85, 0)
+		bobButton3.TextColor3 = Color3.fromRGB(0, 85, 0)
+		bobButton3.Text = "Loop Teleport: TRUE"
+	else
+		uistroke4.Color = Color3.fromRGB(85, 0, 0)
+		bobButton3.TextColor3 = Color3.fromRGB(85, 0, 0)
+		bobButton3.Text = "Loop Teleport: FALSE"
+	end
+end)
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
 		end
 	end
 end)
