@@ -12,6 +12,7 @@ local startPos = nil
 
 screenui.Parent = plr.PlayerGui
 screenui.Name = math.random(100000, 999999)
+screenui.ResetOnSpawn = false
 
 local frame = Instance.new("Frame")
 frame.Parent = screenui
