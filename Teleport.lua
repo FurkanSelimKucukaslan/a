@@ -5,6 +5,7 @@ local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
 local UIS = game:GetService('UserInputService')
 local Render
+local a = false
 local DiedConnection
 local dragToggle = nil
 local dragSpeed = 0.25
@@ -257,15 +258,26 @@ end)
 
 bobButton4.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild(bobButton2.Text) then
-		if workspace[bobButton2.Text]:FindFirstChild("HumanoidRootPart") then
-			plr.Character.Humanoid:MoveTo(workspace[bobButton2.Text].HumanoidRootPart.Position)
+		a = not a
+		if a == true then
+			bobButton4.Text = "Stop Moving"
 		else
-			plr.Character.Humanoid:MoveTo(workspace[bobButton2.Text].Position)
+			bobButton4.Text = "Move"
+		end
+		if workspace[bobButton2.Text]:FindFirstChild("HumanoidRootPart") then
+			repeat
+				plr.Character.Humanoid:MoveTo(workspace[bobButton2.Text].HumanoidRootPart.Position)
+				wait(0.05)
+			until a == false
+		else
+			repeat
+				plr.Character.Humanoid:MoveTo(workspace[bobButton2.Text].Position)
+				wait(0.05)
+			until a == false
 		end
 	end
 end)
 
-local a 
 bobButton5.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild(bobButton2.Text) then
 		SpectateSettings.SmoothTransitions.Status = not SpectateSettings.SmoothTransitions.Status
@@ -313,6 +325,8 @@ Render=game:GetService("RunService").RenderStepped:Connect(function()
 			repeat
 				wait(0.05)
 			until not (highlight.Name == bobButton2.Text)
+			a = false
+			bobButton4.Text = "Move"
 			highlight:Destroy()
 		end
 	end
