@@ -78,7 +78,7 @@ local textlabel = Instance.new("TextLabel")
 textlabel.Parent = frame
 textlabel.Font = Enum.Font.Merriweather
 textlabel.TextScaled = true
-textlabel.Text = "🗿 Teleport Player 🗿"
+textlabel.Text = "🗿 Player Stats 🗿"
 textlabel.TextColor3 = Color3.fromRGB(0, 85, 0)
 textlabel.Size = UDim2.new(0.938, 0,0.145, 0)
 textlabel.BackgroundTransparency = 1
@@ -300,6 +300,20 @@ bobButton5.MouseButton1Click:Connect(function()
 			bobButton3.Visible = true
 			bobButton4.Visible = true
 			bobButton2.Visible = true
+		end
+	end
+end)
+
+Render=game:GetService("RunService").RenderStepped:Connect(function()
+	if workspace:FindFirstChild(bobButton2.Text) then
+		if not workspace[bobButton2.Text]:FindFirstChild(bobButton2.Text) then
+			local highlight = Instance.new("Highlight")
+			highlight.Parent = workspace[bobButton2.Text]
+			highlight.Name = highlight.Parent.Name
+			repeat
+				wait(0.05)
+			until not (highlight.Name == bobButton2.Text)
+			highlight:Destroy()
 		end
 	end
 end)
