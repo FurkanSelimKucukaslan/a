@@ -126,12 +126,12 @@ uistroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 local bobButton3 = Instance.new("TextButton")
 bobButton3.Parent = frame
-bobButton3.Size = UDim2.new(0.657, 0,0.131, 0)
+bobButton3.Size = UDim2.new(0.365, 0,0.131, 0)
 bobButton3.TextScaled = true
 bobButton3.Text = "Loop Teleport: FALSE"
 bobButton3.BackgroundColor3 = Color3.new(0, 0, 0)
 bobButton3.TextColor3 = Color3.fromRGB(85, 0, 0)
-bobButton3.Position = UDim2.new(0.167, 0,0.579, 0)
+bobButton3.Position = UDim2.new(0.085, 0,0.584, 0)
 
 local uicorner4 = Instance.new("UICorner")
 uicorner4.Parent = bobButton3
@@ -197,6 +197,41 @@ hhh.BackgroundTransparency = 1
 hhh.TextStrokeTransparency = 1
 hhh.Visible = false
 
+local function getRandomHumanoidModel()
+	local models = workspace:GetChildren()
+	local humanoidModels = {}
+
+	for i, model in models do
+		if model:IsA("Model") and model:FindFirstChild("Humanoid") then
+			table.insert(humanoidModels, model)
+		end
+	end
+
+	if #humanoidModels > 0 then
+		local randomIndex = math.random(1, #humanoidModels)
+		local selectedModel = humanoidModels[randomIndex]
+		bobButton2.Text = selectedModel.Name
+	end
+end
+
+local bobButton6 = Instance.new("TextButton")
+bobButton6.Parent = frame
+bobButton6.Size = UDim2.new(0.365, 0,0.131, 0)
+bobButton6.TextScaled = true
+bobButton6.Text = "Select Random Humanoid"
+bobButton6.BackgroundColor3 = Color3.new(0, 0, 0)
+bobButton6.TextColor3 = Color3.fromRGB(0, 85, 0)
+bobButton6.Position = UDim2.new(0.523, 0,0.584, 0)
+
+local uicorner7 = Instance.new("UICorner")
+uicorner7.Parent = bobButton6
+uicorner7.CornerRadius = UDim.new(0, 25)
+
+local uistroke7 = Instance.new("UIStroke")
+uistroke7.Parent = bobButton6
+uistroke7.Color = Color3.fromRGB(0, 85, 0)
+uistroke7.Thickness = 2
+uistroke7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 bobButton.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild(bobButton2.Text) then
@@ -330,4 +365,8 @@ Render=game:GetService("RunService").RenderStepped:Connect(function()
 			highlight:Destroy()
 		end
 	end
+end)
+
+bobButton6.MouseButton1Click:Connect(function()
+	getRandomHumanoidModel()
 end)
