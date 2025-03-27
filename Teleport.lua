@@ -58,13 +58,8 @@ frame.Parent = screenui
 frame.Size = UDim2.new(0.255, 0,0.336, 0)
 frame.Position = UDim2.new(0.73, 0,0.332, 0)
 frame.BackgroundColor3 = Color3.new(0,0,0)
-
-local function updateInput(input)
-	local delta = input.Position - dragStart
-	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-end
+frame.Active = true
+frame.Draggable = true
 
 local uicorner = Instance.new("UICorner")
 uicorner.Parent = frame
@@ -283,14 +278,6 @@ frame.InputBegan:Connect(function(input)
 	end
 end)
 
-UIS.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		if dragToggle then
-			updateInput(input)
-		end
-	end
-end)
-
 bobButton4.MouseButton1Click:Connect(function()
 	if workspace:FindFirstChild(bobButton2.Text) then
 		a = not a
@@ -323,6 +310,7 @@ bobButton5.MouseButton1Click:Connect(function()
 			bobButton4.Visible = false
 			bobButton2.Visible = false
 			bobButton5.Text = "Stop Spectating"
+			bobButton6.Visible = false
 			Camera.CameraType=Enum.CameraType.Scriptable
 			local TargetCFrame
 			repeat
@@ -347,6 +335,7 @@ bobButton5.MouseButton1Click:Connect(function()
 			bobButton3.Visible = true
 			bobButton4.Visible = true
 			bobButton2.Visible = true
+			bobButton6.Visible = true
 		end
 	end
 end)
