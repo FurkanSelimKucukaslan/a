@@ -1,4 +1,4 @@
-print("Made by NexuCore Team")
+print("Made by Triackers Hacker Team")
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
 wait(2)
 local plr = game.Players.LocalPlayer
