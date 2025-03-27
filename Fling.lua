@@ -55,6 +55,7 @@ TextLabel.Size = UDim2.new(0, 128, 0, 39)
 TextLabel.Font = Enum.Font.SourceSans
 TextLabel.Text = "Touch Fling"
 TextLabel.TextColor3 = Color3.fromRGB(0, 85, 0)
+TextLabel.Font = Enum.Font.Merriweather
 TextLabel.TextSize = 34.000
 
 -- Scripts:
