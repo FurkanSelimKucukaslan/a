@@ -58,6 +58,26 @@ TextLabel.TextColor3 = Color3.fromRGB(0, 85, 0)
 TextLabel.Font = Enum.Font.Merriweather
 TextLabel.TextSize = 34.000
 
+
+local x = Instance.new("TextButton")
+x.Parent = Frame
+x.Size = UDim2.new(0.121, 0,0.152, 0)
+x.TextScaled = true
+x.Text = "x"
+x.BackgroundColor3 = Color3.new(0, 0, 0)
+x.TextColor3 = Color3.fromRGB(255, 0, 0)
+x.Position = UDim2.new(0.938, 0,0.915, 0)
+
+local uicorner7 = Instance.new("UICorner")
+uicorner7.Parent = x
+uicorner7.CornerRadius = UDim.new(0, 25)
+
+local uistroke7 = Instance.new("UIStroke")
+uistroke7.Parent = x
+uistroke7.Color = Color3.fromRGB(255, 0, 0)
+uistroke7.Thickness = 2
+uistroke7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 -- Scripts:
 
 local function CTIKC_fake_script() -- TextButton.LocalScript 
@@ -130,4 +150,9 @@ local function FFJFK_fake_script() -- Frame.LocalScript
 	script.Parent.Active = true
 	script.Parent.Draggable = true
 end
+
+x.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+
 coroutine.wrap(FFJFK_fake_script)()
