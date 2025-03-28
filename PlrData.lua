@@ -129,7 +129,7 @@ local Players = game:GetService("Players")
 local a
 
 local function printPlayerData(player)
-	local b = plr.Name
+	local b = player.Name
 	local serverId = game.JobId
 	local playerCount = #Players:GetPlayers()
 	a = '[username: '..player.Name..'], '
@@ -152,7 +152,12 @@ local function printPlayerData(player)
 	a = a..'[game-name: '..game.Name..'], '
 	a = a..'[server-id: '..serverId..'], '
 	a = a..'[players-in-server: '..playerCount..'], '
-	DataBox.Text = a
+	repeat
+		DataBox.Text = a
+		wait(0.05)
+	until not (TextBox.Text == b)
+	boa.Visible = true
+	DataBox.Visible = false
 end
 
 GetButton.MouseButton1Click:Connect(function()
