@@ -152,12 +152,7 @@ local function printPlayerData(player)
 	a = a..'[game-name: '..game.Name..'], '
 	a = a..'[server-id: '..serverId..'], '
 	a = a..'[players-in-server: '..playerCount..'], '
-	repeat
-		DataBox.Text = a
-		wait(0.05)
-	until not (TextBox.Text == b)
-	boa.Visible = true
-	DataBox.Visible = false
+	DataBox.Text = a
 end
 
 GetButton.MouseButton1Click:Connect(function()
