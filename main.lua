@@ -169,6 +169,10 @@ fyu.MouseButton1Click:Connect(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/FurkanSelimKucukaslan/a/main/Flying.lua'))()
 end)
 
+fu.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/FurkanSelimKucukaslan/a/main/Fling.lua'))()
+end)
+
 x.MouseButton1Click:Connect(function()
 	open.Value = true
 	button.Visible = true
