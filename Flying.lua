@@ -117,6 +117,25 @@ uistroke5.Color = Color3.fromRGB(0, 85, 0)
 uistroke5.Thickness = 2
 uistroke5.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
+local x = Instance.new("TextButton")
+x.Parent = frame
+x.Size = UDim2.new(0.121, 0,0.152, 0)
+x.TextScaled = true
+x.Text = "x"
+x.BackgroundColor3 = Color3.new(0, 0, 0)
+x.TextColor3 = Color3.fromRGB(255, 0, 0)
+x.Position = UDim2.new(0.938, 0,0.915, 0)
+
+local uicorner7 = Instance.new("UICorner")
+uicorner7.Parent = x
+uicorner7.CornerRadius = UDim.new(0, 25)
+
+local uistroke7 = Instance.new("UIStroke")
+uistroke7.Parent = x
+uistroke7.Color = Color3.fromRGB(255, 0, 0)
+uistroke7.Thickness = 2
+uistroke7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 FlyButton.MouseButton1Click:Connect(function()
 	if nowe == true then
 		nowe = false
@@ -362,4 +381,8 @@ mine.MouseButton1Down:connect(function()
 			end
 		end
 	end
+end)
+
+x.MouseButton1Click:Connect(function()
+	screenui:Destroy()
 end)
