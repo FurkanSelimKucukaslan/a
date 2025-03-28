@@ -50,7 +50,7 @@ local SpectateSettings={
 }
 
 screenui.Parent = plr.PlayerGui
-screenui.Name = math.random(100000, 999999)
+screenui.Name = "Triackers_TPUI"
 screenui.ResetOnSpawn = false
 
 local frame = Instance.new("Frame")
