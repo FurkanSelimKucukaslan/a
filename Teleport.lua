@@ -1,5 +1,5 @@
-print("Made by Triackers Hacker Team")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
+--print("Made by Triackers Hacker Team")
+--loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
 wait(2)
 local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
@@ -192,6 +192,26 @@ hhh.BackgroundTransparency = 1
 hhh.TextStrokeTransparency = 1
 hhh.Visible = false
 
+
+local x = Instance.new("TextButton")
+x.Parent = frame
+x.Size = UDim2.new(0.121, 0,0.152, 0)
+x.TextScaled = true
+x.Text = "x"
+x.BackgroundColor3 = Color3.new(0, 0, 0)
+x.TextColor3 = Color3.fromRGB(255, 0, 0)
+x.Position = UDim2.new(0.938, 0,0.915, 0)
+
+local uicorner7 = Instance.new("UICorner")
+uicorner7.Parent = x
+uicorner7.CornerRadius = UDim.new(0, 25)
+
+local uistroke7 = Instance.new("UIStroke")
+uistroke7.Parent = x
+uistroke7.Color = Color3.fromRGB(255, 0, 0)
+uistroke7.Thickness = 2
+uistroke7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 local function getRandomHumanoidModel()
 	local models = workspace:GetChildren()
 	local humanoidModels = {}
@@ -311,6 +331,7 @@ bobButton5.MouseButton1Click:Connect(function()
 			bobButton2.Visible = false
 			bobButton5.Text = "Stop Spectating"
 			bobButton6.Visible = false
+			x.Visible = false
 			Camera.CameraType=Enum.CameraType.Scriptable
 			local TargetCFrame
 			repeat
@@ -336,6 +357,7 @@ bobButton5.MouseButton1Click:Connect(function()
 			bobButton4.Visible = true
 			bobButton2.Visible = true
 			bobButton6.Visible = true
+			x.Visible = true
 		end
 	end
 end)
@@ -358,4 +380,8 @@ end)
 
 bobButton6.MouseButton1Click:Connect(function()
 	getRandomHumanoidModel()
+end)
+
+x.MouseButton1Click:Connect(function()
+	screenui:Destroy()
 end)
