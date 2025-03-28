@@ -1,5 +1,5 @@
-print("Made by Triackers Hacker Team")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
+--print("Made by Triackers Hacker Team")
+--loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
 wait(2)
 local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
@@ -161,6 +161,25 @@ uistroke6.Color = Color3.fromRGB(0, 85, 0)
 uistroke6.Thickness = 2
 uistroke6.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
+local plrd = Instance.new("TextButton")
+plrd.Parent = buttonsFrame
+plrd.Size = UDim2.new(0.194, 0,0.131, 0)
+plrd.TextScaled = true
+plrd.Text = "Player Data/Stats"
+plrd.BackgroundColor3 = Color3.new(0, 0, 0)
+plrd.TextColor3 = Color3.fromRGB(0, 85, 0)
+plrd.Position = UDim2.new(0.717, 0,0.786, 0)
+
+local uicorner6 = Instance.new("UICorner")
+uicorner6.Parent = plrd
+uicorner6.CornerRadius = UDim.new(0, 25)
+
+local uistroke6 = Instance.new("UIStroke")
+uistroke6.Parent = plrd
+uistroke6.Color = Color3.fromRGB(0, 85, 0)
+uistroke6.Thickness = 2
+uistroke6.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
 psu.MouseButton1Click:Connect(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/FurkanSelimKucukaslan/a/main/Teleport.lua'))()
 end)
@@ -171,6 +190,10 @@ end)
 
 fu.MouseButton1Click:Connect(function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/FurkanSelimKucukaslan/a/main/Fling.lua'))()
+end)
+
+plrd.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/FurkanSelimKucukaslan/a/main/PlrData.lua'))()
 end)
 
 x.MouseButton1Click:Connect(function()
