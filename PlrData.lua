@@ -1,6 +1,7 @@
-print("Made by Triackers Hacker Team")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
+--print("Made by Triackers Hacker Team")
+--loadstring(game:HttpGet('https://raw.githubusercontent.com/Pro666Pro/BypassAntiCheat/main/main.lua'))()
 wait(2)
+local stop = false
 local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
 
@@ -152,15 +153,20 @@ local function printPlayerData(player)
 	a = a..'[game-name: '..game.Name..'], '
 	a = a..'[server-id: '..serverId..'], '
 	a = a..'[players-in-server: '..playerCount..'], '
-	DataBox.Text = a
+	repeat
+		DataBox.Text = a
+		wait(0.05)
+	until stop == true
 end
 
 GetButton.MouseButton1Click:Connect(function()
 	if game.Players:FindFirstChild(TextBox.Text) then
+		stop = false
 		boa.Visible = false
 		DataBox.Visible = true
 		printPlayerData(game.Players[TextBox.Text])
 	else
+		stop = true
 		DataBox.Visible = false
 		boa.Visible = true
 	end
