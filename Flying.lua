@@ -6,7 +6,7 @@ speeds = 1
 local plr = game.Players.LocalPlayer
 local screenui = Instance.new("ScreenGui")
 screenui.Parent = plr.PlayerGui
-screenui.Name = math.random(100000, 999999)
+screenui.Name = "Triackers_FLYING"
 screenui.ResetOnSpawn = false
 local speaker = game:GetService("Players").LocalPlayer
 
