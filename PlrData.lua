@@ -136,7 +136,7 @@ local function printPlayerData(player)
 	a = a..'[user-id: '..player.UserId..'], '
 
 	local leaderstats = player:FindFirstChild("leaderstats")
-	if leaderstats then
+	if leaderstats and #leaderstats:GetChildren() > 0 then
 		for _, stat in leaderstats:GetChildren() do
 			a = a..'['..stat.Name..': '.. stat.Value..'], '
 		end
@@ -152,12 +152,7 @@ local function printPlayerData(player)
 	a = a..'[game-name: '..game.Name..'], '
 	a = a..'[server-id: '..serverId..'], '
 	a = a..'[players-in-server: '..playerCount..'], '
-	repeat
-		DataBox.Text = a
-		wait(0.05)
-	until not (TextBox.Text == b)
-	boa.Visible = true
-	DataBox.Visible = false
+	DataBox.Text = a
 end
 
 GetButton.MouseButton1Click:Connect(function()
@@ -165,6 +160,9 @@ GetButton.MouseButton1Click:Connect(function()
 		boa.Visible = false
 		DataBox.Visible = true
 		printPlayerData(game.Players[TextBox.Text])
+	else
+		DataBox.Visible = false
+		boa.Visible = true
 	end
 end)
 
